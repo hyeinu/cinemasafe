@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Movie = require('../models/movie');
+const Warning = require('../models/warning')
 
 router.route('/')
   .get((req, res) => {
@@ -10,7 +11,7 @@ router.route('/')
     })
   })
   .post((req, res) =>{
-    Movie.create(req.body, (err, movie) =>{
+    Movie.create(req.body, (err, movie) => {
       if (err) return res.status(400).send(err)
       res.send(movie)
   })
@@ -30,11 +31,17 @@ router.route('/:title')
       }
     })
   })
-//   .post((req, res) =>{
-//     Movie.create(req.body, (err, movie) =>{
-//       if (err) return res.status(400).send(err)
-//       res.send(movie)
-//   })
-// })
+
+router.route('/addWarning/:id')
+  .put((req, res) => {
+    Warning.create(req.body, (err, warning) => {
+      if (err) return res.status(400).send(err);
+      Movie.findById(req.params.id, (err, movie) =>{
+        if (err) return res.status(400).send(err)
+
+        res.send()
+      })
+    })
+})
 
 module.exports = router;
