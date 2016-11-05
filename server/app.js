@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable arrow-parens */
-
 // CONSTANTS
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/cinemasafe';
