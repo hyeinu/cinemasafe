@@ -8,7 +8,7 @@ router.route('/')
   .get((req, res) => {
     Movie.find({}, (err, movies) => {
       res.status(err ? 400 : 200).send(err || movies)
-    })
+    }).populate('warnings')
   })
   .post((req, res) =>{
     Movie.create(req.body, (err, movie) => {
@@ -29,7 +29,7 @@ router.route('/:title')
       } else {
         res.send(movie)
       }
-    })
+    }).populate('warnings')
   })
 
 router.route('/addWarning/:id')
@@ -38,10 +38,12 @@ router.route('/addWarning/:id')
       if (err) return res.status(400).send(err);
       Movie.findById(req.params.id, (err, movie) =>{
         if (err) return res.status(400).send(err)
-
-        res.send()
+        movie.warnings.push(warning._id);
+        movie.save(err => {
+          res.send()
       })
     })
+  })
 })
 
 module.exports = router;
