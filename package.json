@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/app.js",
+    "postinstall": "webpack",
     "elint": "eslint . - ext .js - ext .jsx - cache || true",
     "elint:table": "eslint . — ext .js — ext .jsx — cache — format table || true",
     "elint:summary": "eslint . — ext .js — ext .jsx — cache — format ‘node_modules/eslint-friendly-formatter’ || true"
