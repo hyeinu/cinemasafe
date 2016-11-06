@@ -44,7 +44,10 @@ export function getAll(){
 export function searchMovies(query){
   return (dispatch) => {
     axios.get(`http://www.omdbapi.com/?${query}plot=short&r=json`)
-      .then(res => dispatch(movieList(res.data)))
+      .then(res => {
+        RouteActions.route(`/results`)
+        dispatch(movieList(res.data))
+      })
       .catch()
   }
 }
@@ -53,16 +56,7 @@ export function getMovie(imdbID, poster){
   return(dispatch) => {
     axios.get(`http://www.omdbapi.com/?i=${imdbID}&plot=short&r=json`)
       .then(res => {
-        console.log('res.data:', res.data)
-        let { Title, Plot, Rated, Released } = res.data;
-        let newMovie = {
-          title: Title,
-          rated: Rated,
-          plot: Plot,
-          released: Released,
-          poster,
-          imdbID
-        }
+        let newMovie = res.data;
         return newMovie;
       })
       .then(newMovie => {

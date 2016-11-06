@@ -13,6 +13,7 @@ import Layout from './components/Layout.jsx';
 import Splash from './components/Splash.jsx';
 import NotFound from './components/NotFound.jsx';
 import MoviePage from './components/MoviePage.jsx';
+import SearchMovies from './components/Search/SearchMovies.jsx';
 
 import './style.css';
 import store from './store';
@@ -34,6 +35,7 @@ render(
         <Route path="/" component={Layout} >
           <IndexRoute component={Splash} />
         </Route>
+        <Route path="/results" component={SearchMovies}></Route>
         <Route path="/:imdbID" component={MoviePage}></Route>
         <Route path="*" component={NotFound} />
       </Router>
