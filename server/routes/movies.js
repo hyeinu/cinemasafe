@@ -17,9 +17,9 @@ router.route('/')
   })
 })
 
-router.route('/:title')
+router.route('/:imdbid')
   .put((req, res) => {
-    Movie.find({ title: req.params.title }, (err, movie) => {
+    Movie.find({ imdbID: req.params.imdbid }, (err, movie) => {
       if (err) return res.status(400).send(err)
       if (!movie.length) {
       Movie.create(req.body, (err, movie) => {
@@ -41,9 +41,17 @@ router.route('/addWarning/:id')
         movie.warnings.push(warning._id);
         movie.save(err => {
           res.send()
+        })
       })
     })
   })
-})
+
+router.route('/:id')
+  .delete((req, res) => {
+    Movie.findByIdAndRemove(req.params.id, err => {
+      if (err) return res.status(400).send(err);
+      res.send();
+    })
+  })
 
 module.exports = router;

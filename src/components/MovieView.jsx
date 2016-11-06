@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getAll } from '../actions/UserActions'
+import { getAll, searchMovies } from '../actions/UserActions'
 
 class MovieView extends Component {
   constructor(props){
@@ -12,10 +12,10 @@ class MovieView extends Component {
     }
   }
   componentDidMount(){
-    this.props.getAll()
+    let query = 's=strange&y=&'
+    this.props.searchMovies(query)
   }
   render(){
-    console.log('this.props:', this.props)
     return(
       <h1>Movies</h1>
     )
@@ -30,7 +30,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAll: () => { dispatch(getAll()) }
+    getAll: () => { dispatch(getAll()) },
+    searchMovies: (query) => { dispatch(searchMovies(query)) }
   }
 }
 
