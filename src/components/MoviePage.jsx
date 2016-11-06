@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class MoviePage extends Component {
+import { addWarning } from '../actions/UserActions';
+import AddWarning from './AddWarning.jsx';
+import WarningTags from './WarningTags.jsx';
+
+class MoviePage extends Component {
   constructor(props){
     super(props);
 
@@ -20,34 +25,60 @@ export default class MoviePage extends Component {
         country: 'France',
         awards: 'Best Sheep',
         rating: 'PG-13',
-
-
       }
     }
+    this.addWarning = this.addWarning.bind(this);
+  }
+  addWarning(warn){
+    let { _id } = this.props.movie;
+    this.props.addWarning(_id, warn);
   }
   render(){
-    let { title, year, poster, warnings, runtime, genre, plot, writer, director, actors, language, country, awards, rating} = this.state.movie;
+    let warnView;
+    if(!this.props.movie){
+      return (
+        <div></div>
+      )
+    }
+    let { Title, Year, Poster, warnings, Runtime, Genre, Plot, Writer, Director, Actors, Language, Country, Awards, imdbRating, imdbID } = this.props.movie;
+    if(warnings){
+      warnView = warnings.map((warning, index) => {
+        return <WarningTags key={index} warning={warning} imdbID={imdbID} />
+      })
+    }
     return(
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-4">
-        <img src={poster} alt=""/>
+      <div style={{marginTop: "45px"}} className="row">
+        <div className="col-xs-4">
+          <img src={Poster} alt=""/>
         </div>
         <div className="col-xs-8">
-        <h1>{title} ({year})</h1>
-        <h3>{rating} | {genre}</h3>
-
-        <div className="movieInfo">
-
-        <p>
-          {plot}
-        </p>
-        <b>Runtime:</b> {runtime} 
-
-        </div>
-        </div>
+          <h1>{Title} ({Year})</h1>
+          <h3>Rating: {imdbRating} | {Genre}</h3>
+          <div className="movieInfo">
+            <p>{Plot}</p>
+            <p><b>Writers:</b> {Writer}</p>
+            <p><b>Runtime:</b> {Runtime}</p>
+          </div>
+          <AddWarning id={Year} addWarning={this.addWarning} />
+          <div className="col-xs-6">
+            {warnView}
+          </div>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    movie: state.movies.movie
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addWarning: (id, warn) => { dispatch(addWarning(id, warn)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage)

@@ -5,6 +5,21 @@ body {
     background-image:url("http://i.imgur.com/sLBpq6U.png");
 }
 
+.splashBkg {
+	margin: 0;
+	padding: 0;
+	background-image: url('http://www.manolith.com/wp-content/uploads/2013/10/Toyogeki-Movie_Toyooka002.jpg');
+	background-size: cover;
+}
+
+.splashText {
+	margin-top : 25vh;
+	font-family: 'Galada', cursive;
+	font-size: 120px;
+	color: #FB3F39;
+	text-shadow: 5px 5px 0 #14265C;
+}
+/*
 .checkbox-inline {
 	padding:2px;
 	margin:2px;
@@ -42,7 +57,7 @@ input[type=radio]{
 
 #advancedButton{
 
-}
+}*/
 
 .title {
   color: #428bca;
@@ -56,5 +71,5 @@ input[type=radio]{
 }
 
 .container {
-	
+
 }

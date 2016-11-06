@@ -34,10 +34,10 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={Layout} >
           <IndexRoute component={Splash} />
+          <Route path="/results" component={SearchMovies}></Route>
+          <Route path="/:imdbID" component={MoviePage}></Route>
+          <Route path="*" component={NotFound} />
         </Route>
-        <Route path="/results" component={SearchMovies}></Route>
-        <Route path="/:imdbID" component={MoviePage}></Route>
-        <Route path="*" component={NotFound} />
       </Router>
     </MuiThemeProvider>
   </Provider>,

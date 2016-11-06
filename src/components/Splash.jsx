@@ -34,7 +34,8 @@ class Splash extends Component{
     return(
       <div>
         {/* Main search bar */}
-        <div style={{marginTop: '40vh'}} className="input-group" onKeyPress={this.keyPress}>
+        <h1 className="text-center splashText">Cinema Safe</h1>
+        <div style={{marginTop: '10vh'}} className="input-group" onKeyPress={this.keyPress}>
           <input type="text" onChange={this.onChange} value={this.state.title} className="form-control" placeholder="Type the name of a Movie or Show" />
           <span type="button" className=" input-group-addon" alt="Search" onClick={this.searchTerm}>
           <i className="glyphicon glyphicon-search"></i>

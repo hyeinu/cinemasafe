@@ -71,18 +71,38 @@ export function getMovie(imdbID, poster){
   }
 }
 
-export function addCount(id){
+export function addCount(id, imdbID){
   return (dispatch) => {
     axios.put(`/api/warnings/addCount/${id}`)
-      .then(res => dispatch(replaceWarning(res.data)))
-      .catch()
+     .then(() => {
+        axios.get(`/api/movies/${imdbID}`)
+          .then(res => { dispatch(oneMovie(res.data)) })
+          .catch()
+     })
+     .catch()
   }
 }
 
-export function minusCount(id){
+export function minusCount(id, imdbID){
   return (dispatch) => {
     axios.put(`/api/warnings/minusCount/${id}`)
-      .then(res => dispatch(replaceWarning(res.data)))
+     .then(() => {
+        axios.get(`/api/movies/${imdbID}`)
+          .then(res => { dispatch(oneMovie(res.data)) })
+          .catch()
+     })
+     .catch()
+  }
+}
+
+export function addWarning(id, warning){
+  let warn = {};
+  warn.name = warning;
+  return (dispatch) => {
+    axios.put(`api/movies/addWarning/${id}`, warn)
+      .then(res => {
+        dispatch(oneMovie(res.data))
+      })
       .catch()
   }
 }

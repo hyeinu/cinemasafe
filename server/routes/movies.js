@@ -27,7 +27,7 @@ router.route('/:imdbid')
         res.send(movie)
       })
       } else {
-        res.send(movie)
+        res.send(movie[0])
       }
     }).populate('warnings')
   })
@@ -39,8 +39,11 @@ router.route('/addWarning/:id')
       Movie.findById(req.params.id, (err, movie) =>{
         if (err) return res.status(400).send(err)
         movie.warnings.push(warning._id);
-        movie.save(err => {
-          res.send()
+        movie.save((err) => {
+          Movie.findById(req.params.id, (err, movie) => {
+            if (err) return res.status(400).send(err)
+            res.send(movie)
+          }).populate('warnings')
         })
       })
     })
@@ -52,6 +55,12 @@ router.route('/:id')
       if (err) return res.status(400).send(err);
       res.send();
     })
+  })
+  .get((req, res) => {
+    Movie.find({ imdbID: req.params.id }, (err, movie) => {
+      if (err) return res.status(400).send(err);
+      res.send(movie[0]);
+    }).populate('warnings')
   })
 
 module.exports = router;

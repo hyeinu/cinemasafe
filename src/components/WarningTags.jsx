@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const style = {
-  display: "inline-block"
-}
+import { addCount, minusCount } from '../actions/UserActions';
 
-export default class WarningTags extends Component {
-  addCounter(){
-    console.log("here");
+class WarningTags extends Component {
+  constructor(props){
+    super(props);
+
+    this.addCounter = this.addCounter.bind(this);
+    this.minusCounter = this.minusCounter.bind(this);
   }
-  minusCounter(){
-    console.log("minus");
+  addCounter(id, imdbID){
+    this.props.addCount(id, imdbID);
+  }
+  minusCounter(id, imdbID){
+    this.props.minusCount(id, imdbID);
   }
   render(){
+    let { warning, imdbID } = this.props;
+    let { _id, name, counter } = warning;
     return(
       <ul className="list-inline">
-        <li><h5> Gore | 5 </h5></li>
-        <li><i className="glyphicon glyphicon-chevron-up" onClick={this.addCounter}></i></li>
-        <li><i className="glyphicon glyphicon-chevron-down" onClick={this.minusCounter}></i></li>
+        <li><h5> {name.toUpperCase()} | {counter} </h5></li>
+        <li><i className="glyphicon glyphicon-chevron-up" onClick={this.addCounter.bind(null, _id, imdbID)}></i></li>
+        <li><i className="glyphicon glyphicon-chevron-down" onClick={this.minusCounter.bind(null, _id, imdbID)}></i></li>
       </ul>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addCount: (id, imdbID) => { dispatch(addCount(id, imdbID)) },
+    minusCount: (id, imdbID) => { dispatch(minusCount(id, imdbID)) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(WarningTags)
