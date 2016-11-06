@@ -43,7 +43,7 @@ export function getAll(){
 
 export function searchMovies(query){
   return (dispatch) => {
-    axios.get(`http://www.omdbapi.com/?${query}plot=short&r=json`)
+    axios.get(`https://www.omdbapi.com/?${query}plot=short&r=json`)
       .then(res => {
         RouteActions.route(`/results`)
         dispatch(movieList(res.data))
@@ -54,7 +54,7 @@ export function searchMovies(query){
 
 export function getMovie(imdbID, poster){
   return(dispatch) => {
-    axios.get(`http://www.omdbapi.com/?i=${imdbID}&plot=short&r=json`)
+    axios.get(`https://www.omdbapi.com/?i=${imdbID}&plot=short&r=json`)
       .then(res => {
         let newMovie = res.data;
         return newMovie;
