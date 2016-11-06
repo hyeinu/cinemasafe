@@ -6,7 +6,7 @@ export default function movieReducer(state = {}, action ) {
     })
     case 'MOVIE':
     return Object.assign({}, state, {
-      movie: action.payload[0]
+      movie: action.payload
     })
     case 'REPLACE_WARNING':
     return Object.assign({}, state, {

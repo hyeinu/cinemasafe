@@ -1,87 +1,54 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Splash extends Component{
+import { searchMovies } from '../actions/UserActions'
+
+class Splash extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      title: ''
+    }
+    this.onChange = this.onChange.bind(this);
+    this.searchTerm = this.searchTerm.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+  }
+  onChange(e){
+    this.setState({
+      title: e.target.value
+    })
+  }
+  searchTerm(){
+    let query = 's=' + this.state.title + '&';
+    this.props.searchMovies(query);
+    this.setState({
+      title: ''
+    })
+  }
+  keyPress(target){
+    if(target.charCode === 13){
+      this.searchTerm()
+    }
+  }
   render(){
     return(
-       <div className="container-fluid">
- 		<div className="row">
- 			{/* Main search bar */}
- 			<input type="text" placeholder="Type the name of a movie or show" id="mainSearch" /> 
- 			<button type = "button" className="btn btn-default" alt="Search"> 
- 				<span className="glyphicon glyphicon-search"></span>
- 			</button>
- 		</div>
- 		<div className="row">
-			<button data-toggle="collapse" data-target="#advanced" id="advancedButton">Advanced Search</button>
-		</div>
-			{/* Collapsing portion */}
-			<div id="advanced" className="collapse">
-			<form className="form-inline">
-					<div className="form-group" id="advSearch">
-					{/* Type selection (check boxes)*/}
-					<div className="row">
-						<h4>Type</h4>
-						<div className="checkbox">
-							<label className="checkbox-inline">
-								<input type="checkbox" value=""></input>movie
-							</label>
-							<label className="checkbox-inline" value="">
-								<input type="checkbox" value=""></input>series
-							</label>
-							<label className="checkbox-inline" value="">
-								<input type="checkbox" value=""></input>episode
-							</label>
-						</div>
-					</div>
-					{/* Year selection (radio/text) */}
-					<div className="row">
-						<div className="col-xs-2">
-							<h4>Year</h4>
-						</div>
-						<div className="col-xs-10">
-							<div className="radio">
-								{/* Exact year */}
-								<label className="radio">
-									<input type="radio" name="optradio"></input>
-									<input type="text" className="year" id="yearExact"></input>
-								</label>	
-								{/* Year before */}
-								<label className="radio">
-									<input type="radio" name="optradio"></input>
-									Before <input type="text" className="year" id="yearBefore"></input>
-								</label>
-								{/* Year after */}
-								<label className="radio">
-									<input type="radio" name="optradio"></input>
-									After <input type="text" className="year" id="yearAfter"></input>
-								</label>
-								{/* Year between */}
-								<label className="radio">
-									<input type="radio" name="optradio"></input>
-									Between <input type="text" className="year" id="yearStart"></input> and&nbsp;
-									<input type="text" className="year" id="yearStart"></input>
-								</label>
-							</div>
-						</div>
-					</div>
-					{/* Plot selection (check boxes)*/}
-					<div className="row">
-						<h4>Plot</h4>
-						<div className="checkbox">
-							<label className="checkbox-inline">
-								<input type="checkbox" value=""></input>short
-							</label>
-							<label className="checkbox-inline" value="">
-								<input type="checkbox" value=""></input>full
-							</label>
-						</div>
-					</div>
-				</div>	
-			</form>
-			</div>
-			
-		  </div>
-		
+      <div>
+        {/* Main search bar */}
+        <div style={{marginTop: '40vh'}} className="input-group" onKeyPress={this.keyPress}>
+          <input type="text" onChange={this.onChange} value={this.state.title} className="form-control" placeholder="Type the name of a Movie or Show" />
+          <span type="button" className=" input-group-addon" alt="Search" onClick={this.searchTerm}>
+          <i className="glyphicon glyphicon-search"></i>
+          </span>
+        </div>
+      </div>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchMovies: (query) => { dispatch(searchMovies(query)) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Splash)
