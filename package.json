@@ -1,6 +1,9 @@
 {
   "name": "MERNTemplate",
   "version": "1.0.0",
+  "engines": {
+    "node": "7.0.0"
+  },
   "description": "",
   "main": "server/app.js",
   "scripts": {
