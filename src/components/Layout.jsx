@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 
-import Splash from './Splash.jsx'
+import MoviePage from './MoviePage.jsx'
 
 export default class Layout extends Component{
   render(){
     return(
       <div className="container">
-        <Splash />
+        <MoviePage />
       </div>
     )
   }

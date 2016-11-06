@@ -9,7 +9,7 @@ body {
 	margin:2px;
 }
 
-.form-inline .radio input[type="radio"], 
+.form-inline .radio input[type="radio"],
 .form-inline .checkbox input[type="checkbox"],
 input[type=checkbox],
 input[type=radio]{
@@ -47,7 +47,6 @@ input[type=radio]{
   color: #428bca;
   background-color: #ebeef4;
   font-size: 1em;
-  
 }
 
 .redbtn {
