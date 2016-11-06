@@ -37,16 +37,20 @@ if(process.env.NODE_ENV === 'production'){
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
+SessionStore = require('session-mongoose')(express);
+
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(require('express-session')({
+app.use(express.session({
+  store: new SessionStore({
+    url: 'mongodb://localhost/session',
+    interval: 1200000
+  })
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { httpOnly: false }
+  cookie: { maxAge: 1200000 }
 }));
 
 
