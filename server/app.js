@@ -48,7 +48,7 @@ app.use(express.session({
   store: new SessionStore({
     url: 'mongodb://localhost/session',
     interval: 1200000
-  })
+  }),
   secret: 'keyboard cat',
   cookie: { maxAge: 1200000 }
 }));
