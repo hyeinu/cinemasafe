@@ -5,10 +5,12 @@ const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/cinemasafe';
 // PACKAGE REQUIRES
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const mongoose = require('mongoose');
+
+const express = require('express'),
+  SessionStore = require('session-mongoose')(express);
 
 mongoose.Promise = global.Promise;
 
@@ -37,7 +39,6 @@ if(process.env.NODE_ENV === 'production'){
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-SessionStore = require('session-mongoose')(express);
 
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
