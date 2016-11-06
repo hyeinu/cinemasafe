@@ -12,6 +12,7 @@ import { lightBlue900 } from 'material-ui/styles/colors';
 import Layout from './components/Layout.jsx';
 import Splash from './components/Splash.jsx';
 import NotFound from './components/NotFound.jsx';
+import MoviePage from './components/MoviePage.jsx';
 
 import './style.css';
 import store from './store';
@@ -33,6 +34,7 @@ render(
         <Route path="/" component={Layout} >
           <IndexRoute component={Splash} />
         </Route>
+        <Route path="/:imdbID" component={MoviePage}></Route>
         <Route path="*" component={NotFound} />
       </Router>
     </MuiThemeProvider>
