@@ -40,5 +40,17 @@ input[type=radio]{
 }
 
 #advancedButton{
-	
+
+}
+
+.title {
+  color: #428bca;
+  background-color: #ebeef4;
+  font-size: 1em;
+  
+}
+
+.redbtn {
+  background-color: red;
+  color: white;
 }

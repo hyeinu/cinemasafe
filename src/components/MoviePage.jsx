@@ -16,7 +16,17 @@ export default class MoviePage extends Component {
   render(){
     let { title, year, poster, warnings } = this.state.movie;
     return(
-      <h1>{title}</h1>
+      <div className="title">
+        <div className="row">
+          <div className="col-xs-4">
+        <img src={poster} alt=""/>
+        </div>
+        <div className="col-xs-8">
+        <h1>{title}</h1>
+        <h1>{year}</h1>
+        </div>
+        </div>
+      </div>
     )
   }
 }
