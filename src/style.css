@@ -31,6 +31,52 @@ body {
   color: white;
 }
 
-.container {
+div .container[data-reactroot] .container {
 
+}
+
+#moviePage{
+		background-color: #fff;
+	border-radius:4px;
+	border: 1px solid #ddd;
+	padding:10px;
+}
+
+.siteTitle {
+	font-family: 'Galada', cursive;
+	color: #FB3F39;
+	text-shadow: 2px 2px 0 #14265C;
+	font-size:50px;
+}
+
+#header {
+	text-align:center;
+	padding-top:20px;
+}
+
+#header a{
+	color: #FB3F39 !important;
+	text-shadow: 2px 2px 0 #14265C;
+	text-decoration: none !important;
+}
+
+#navBottom{
+	margin-top:20px;
+}
+
+.notActive {
+   pointer-events: none;
+   cursor: default;
+}
+
+.smalltext{
+	font-size:12px;
+}
+
+.expandButton{
+	background-color: #FB3F39;
+    color: white;
+    border:0px;
+    padding:7px;
+    margin-bottom:10px;
 }

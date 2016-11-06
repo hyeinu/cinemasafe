@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SearchItem from './SearchItem.jsx'
+import Header from '../Header.jsx'
 
 class SearchMovies extends Component {
   constructor(props){
@@ -17,6 +18,7 @@ class SearchMovies extends Component {
     }
     return(
       <div>
+        <Header />
         {searchList}
       </div>
     )
