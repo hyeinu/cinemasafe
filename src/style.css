@@ -1,0 +1,44 @@
+body {
+	/* I looked up alignment stuff and it said that this would be useful*/
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox-inline {
+	padding:2px;
+	margin:2px;
+}
+
+.form-inline .radio input[type="radio"], 
+.form-inline .checkbox input[type="checkbox"],
+input[type=checkbox],
+input[type=radio]{
+	margin-right:5px;
+}
+
+.form-inline h4{
+	display:inline-block;
+	margin-right:10px;
+}
+
+#advSearch .radio{
+	display:block;
+}
+
+#advSearch .radio input[type=text]{
+	width:30%;
+	margin-top:2%;
+}
+
+.form-inline .col-xs-2{
+	padding-left:0;
+}
+
+#mainSearch{
+	margin-right:2%;
+	width:50%;
+}
+
+#advancedButton{
+	
+}
