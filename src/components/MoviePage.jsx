@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addWarning } from '../actions/UserActions';
+import RouteActions  from '../actions/RouteActions';
+
 import AddWarning from './AddWarning.jsx';
 import WarningTags from './WarningTags.jsx';
 
@@ -9,29 +11,14 @@ class MoviePage extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      movie: {
-        title: 'Doctor Strange',
-        year: '2016',
-        poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMjM2ODA4MTM0M15BMl5BanBnXkFtZTgwNzE5OTYxMDI@._V1_SX300.jpg',
-        warnings: [{ id: 1, name: 'violence' }, { id: 2, name: 'gore' }],
-        runtime: '500 hours',
-        genre: 'Documentary',
-        plot: 'This is a story about a weird doctor',
-        writer: 'Martin Van Buren',
-        director: 'Hyein Yoo',
-        actors: 'Richard Nixon, Charles Xavier, Monet St. Croix',
-        language: 'Esperanto',
-        country: 'France',
-        awards: 'Best Sheep',
-        rating: 'PG-13',
-      }
-    }
     this.addWarning = this.addWarning.bind(this);
   }
   addWarning(warn){
     let { _id } = this.props.movie;
     this.props.addWarning(_id, warn);
+  }
+  route(path){
+    RouteActions.route(`/${path}`);
   }
   render(){
     let warnView;
@@ -47,6 +34,9 @@ class MoviePage extends Component {
       })
     }
     return(
+      <div style={{marginTop: "15px"}}>
+      <i style={{color: "#14265C", fontSize: "30px" }} className="glyphicon glyphicon-fast-backward" onClick={this.route.bind(null, '')}></i>
+      <i style={{color: "#FB3F39", fontSize: "30px" }} className="glyphicon glyphicon-backward" onClick={this.route.bind(null, 'results')}></i>
       <div style={{marginTop: "45px"}} className="row">
         <div className="col-xs-4">
           <img src={Poster} alt=""/>
@@ -64,6 +54,7 @@ class MoviePage extends Component {
             {warnView}
           </div>
         </div>
+      </div>
       </div>
     )
   }
