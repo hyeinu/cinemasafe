@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
