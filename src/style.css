@@ -2,6 +2,7 @@ body {
 	/* I looked up alignment stuff and it said that this would be useful*/
     margin: 0;
     padding: 0;
+    background-image:url("http://i.imgur.com/sLBpq6U.png");
 }
 
 .checkbox-inline {
@@ -53,4 +54,8 @@ input[type=radio]{
 .redbtn {
   background-color: red;
   color: white;
+}
+
+.container {
+	
 }
