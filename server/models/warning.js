@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
 const warningSchema = new mongoose.Schema({
   name: { type: String, required: true },
